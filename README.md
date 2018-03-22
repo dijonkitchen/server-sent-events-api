@@ -1,7 +1,7 @@
 ## Coding test
 
 
-At `http://live-test-scores.herokuapp.com/scores` you'll find a service that follows the [Server-Sent Events](https://www.w3.org/TR/2015/REC-eventsource-20150203/) protocol. You can connect to the service using cURL:
+At http://live-test-scores.herokuapp.com/scores you'll find a service that follows the [Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html) protocol. You can connect to the service using cURL:
 
         curl http://live-test-scores.herokuapp.com/scores
 
