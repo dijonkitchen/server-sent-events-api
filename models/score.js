@@ -1,8 +1,8 @@
 const EventSource = require('eventsource')
 
-exports.fetch = (batches = 1, cb) => {
+exports.fetch = (url, batches = 1, cb) => {
   const BATCH_SIZE = 20
-  const eventSource = new EventSource('http://live-test-scores.herokuapp.com/scores')
+  const eventSource = new EventSource(url)
 
   const connectionStatus = {
     0: 'Connecting',
