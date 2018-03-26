@@ -1,19 +1,19 @@
 const EventSource = require('eventsource')
 
+const BATCH_SIZE = 20
+const CONNECTION_STATUS = {
+  0: 'Connecting',
+  1: 'Open',
+  2: 'Closed'
+}
+
 exports.fetch = (url, batches = 1, cb) => {
-  const BATCH_SIZE = 20
   const eventSource = new EventSource(url)
 
-  const connectionStatus = {
-    0: 'Connecting',
-    1: 'Open',
-    2: 'Closed'
-  }
-
-  console.log('Connection: ', connectionStatus[eventSource.readyState], eventSource.url)
+  console.log('Connection: ', CONNECTION_STATUS[eventSource.readyState], eventSource.url)
 
   eventSource.onopen = () => {
-    console.log('Connection: ', connectionStatus[eventSource.readyState], eventSource.url)
+    console.log('Connection: ', CONNECTION_STATUS[eventSource.readyState], eventSource.url)
   }
 
   const scores = new Set()
@@ -30,7 +30,7 @@ exports.fetch = (url, batches = 1, cb) => {
   eventSource.addEventListener('score', handleScores)
 
   eventSource.onerror = () => {
-    console.log('Connection: ', connectionStatus[eventSource.readyState], eventSource.url)
+    console.log('Connection: ', CONNECTION_STATUS[eventSource.readyState], eventSource.url)
     console.log('EventSource failed.')
   }
 
