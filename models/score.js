@@ -12,18 +12,18 @@ exports.fetch = (url, batches = 1, cb) => {
     es.logConnectionStatus(eventSource)
   }
 
-  const scores = new Set()
-
-  const handleScores = (event) => {
+  const handleData = (set, event) => {
     const data = JSON.parse(event.data)
-    scores.add(data)
-    if (scores.size >= (batches * BATCH_SIZE)) {
+    set.add(data)
+    if (set.size >= (batches * BATCH_SIZE)) {
       eventSource.close()
-      cb(Array.from(scores))
+      cb(Array.from(set))
     }
   }
 
-  eventSource.addEventListener('score', handleScores)
+  const scores = new Set()
+
+  eventSource.addEventListener('score', event => handleData(scores, event))
 
   eventSource.onerror = () => {
     es.logConnectionStatus(eventSource)
