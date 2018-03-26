@@ -1,6 +1,7 @@
 const EventSource = require('eventsource')
 
-exports.fetch = (cb, batches = 2, batchSize = 20) => {
+exports.fetch = (batches = 1, cb) => {
+  const BATCH_SIZE = 20
   const eventSource = new EventSource('http://live-test-scores.herokuapp.com/scores')
 
   const connectionStatus = {
@@ -20,7 +21,7 @@ exports.fetch = (cb, batches = 2, batchSize = 20) => {
   const handleScores = (event) => {
     const data = JSON.parse(event.data)
     scores.add(data)
-    if (scores.size >= (batches * batchSize)) {
+    if (scores.size >= (batches * BATCH_SIZE)) {
       eventSource.close()
       cb(Array.from(scores))
     }
