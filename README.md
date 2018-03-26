@@ -14,11 +14,15 @@ This represents that student foo received a score of `.991` on exam #3.
 
 The application consumes this data, processes it, and provides a simple REST API that exposes the processed results.
 
-REST API documentation:
+## REST API documentation:
 
-1. A REST API `/students` that lists all users that have received at least one test score
-2. A REST API `/students/{id}` that lists the test results for the specified student, and provides the student's average score across all exams
-3. A REST API `/exams` that lists all the exams that have been recorded
-4. A REST API `/exams/{number}` that lists all the results for the specified exam, and provides the average score across all students
+`GET`:
+   * `/students` lists all users that have received at least one test score
+   * `/students/{id}` lists the test results for the specified student, and provides the student's average score across all exams
+   * `/exams` lists all the exams that have been recorded
+   * `/exams/{number}` lists all the results for the specified exam, and provides the average score across all students
+   * `/scores` lists all the scores of student exams
+
+### Notes
 
 Results are stored in memory instead of persisted in a database as an example.
