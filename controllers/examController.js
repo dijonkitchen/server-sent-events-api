@@ -1,8 +1,12 @@
 const Exam = require('../models/exam')
+const es = require('../helpers/eventSource')
 
 exports.index = (req, res) => {
-    Exam.all(exams => {
-        res.json(exams)
+    es.setHeaders(res)
+
+    Exam.all(exam => {
+        const json = JSON.stringify(exam)
+        res.write("data: " + json + '\n\n');
     })
 }
 
