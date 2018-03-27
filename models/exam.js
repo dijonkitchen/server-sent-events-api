@@ -7,3 +7,15 @@ exports.all = (callback) => {
         callback(Array.from(examsSet))
     })
 }
+
+exports.find = (examId, callback) => {
+    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
+        const exams = scores.filter(score => score.exam === examId)
+        const average = exams.reduce( (acc, exam) => acc + exam.score, 0) / exams.length
+        callback({
+            average,
+            exams
+        })
+    })
+
+}

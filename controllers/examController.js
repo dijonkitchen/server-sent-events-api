@@ -5,3 +5,10 @@ exports.index = (req, res) => {
         res.json(exams)
     })
 }
+
+exports.show = (req, res) => {
+    const id = JSON.parse(req.params.id)
+    Exam.find(id, exam => {
+        res.json(exam)
+    })
+}
