@@ -3,7 +3,7 @@ const es = require('../helpers/eventSource')
 
 const BATCH_SIZE = 20
 
-exports.fetch = (url, batches = 1, cb) => {
+exports.fetch = (url, batches = 1, callback) => {
   const eventSource = new EventSource(url)
 
   es.logConnectionStatus(eventSource)
@@ -17,7 +17,7 @@ exports.fetch = (url, batches = 1, cb) => {
     set.add(data)
     if (set.size >= (batches * BATCH_SIZE)) {
       eventSource.close()
-      cb(Array.from(set))
+      callback(Array.from(set))
     }
   }
 
