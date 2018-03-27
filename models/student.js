@@ -13,10 +13,16 @@ exports.all = (callback) => {
 }
 
 exports.find = (studentId, callback) => {
+    const scores = new Set()
+
     es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', event => {
         const score = JSON.parse(event.data)
         if (score.studentId === studentId) {
-            callback(score)
+            scores.add(score)
+            const totalScore = Array.from(scores).reduce( (acc, score) => acc + score.score, 0)
+            const average = totalScore / scores.size
+
+            callback({ score, average })
         }
     })
 
