@@ -1,4 +1,4 @@
-const Score = require('../models/score')
+const es = require('../helpers/eventSource')
 
 exports.index = (req, res) => {
   res.writeHead(200, {
@@ -7,7 +7,7 @@ exports.index = (req, res) => {
     'Connection': 'keep-alive'
   });
 
-  Score.fetch('http://live-test-scores.herokuapp.com/scores', 'score', scores => {
-    res.write("data: " + scores.data + '\n\n');
+  es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', event => {
+    res.write("data: " + event.data + '\n\n');
   })
 }
