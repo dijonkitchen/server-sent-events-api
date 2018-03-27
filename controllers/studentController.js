@@ -13,6 +13,7 @@ exports.show = (req, res) => {
     es.setHeaders(res)
 
     Student.find(req.params.id, student => {
-        res.write("data: " + student + '\n\n');
+        const json = JSON.stringify(student)
+        res.write("data: " + json + '\n\n');
     })
 }
