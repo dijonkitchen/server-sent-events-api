@@ -10,7 +10,9 @@ exports.index = (req, res) => {
 }
 
 exports.show = (req, res) => {
-    Student.find(req.params.id, student=> {
-        res.json(student)
+    es.setHeaders(res)
+
+    Student.find(req.params.id, student => {
+        res.write("data: " + student + '\n\n');
     })
 }

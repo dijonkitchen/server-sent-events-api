@@ -13,9 +13,11 @@ exports.all = (callback) => {
 }
 
 exports.find = (studentId, callback) => {
-    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
-        const student = scores.filter(score => score.studentId === studentId)
-        callback(student)
+    es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', event => {
+        const student = JSON.parse(event.data)
+        if (student.studentId === studentId) {
+            callback(event.data)
+        }
     })
 
 }
