@@ -26,3 +26,36 @@ The application consumes this data, processes it, and provides a simple REST API
 ### Notes
 
 Results are stored in memory instead of persisted in a database as an example.
+
+## Getting started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+This project uses the latest ES2015+ syntax, so it requires [Node](https://nodejs.org/) V8+. You can ensure you have the latest Node via [Homebrew](https://brew.sh/):
+
+```sh
+brew install node
+brew install yarn
+```
+
+### Installing
+
+```sh
+yarn install
+```
+
+### Development
+
+For a live-reloading server on code changes in development:
+```sh
+yarn devstart
+```
+
+Or without live-reloading:
+```sh
+yarn start
+```
+
+Then, open http://localhost:3000/ or other endpoints.
