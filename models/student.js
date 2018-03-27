@@ -1,10 +1,7 @@
-const Score = require('./score')
+const es = require('../helpers/eventSource')
 
 exports.all = (callback) => {
-    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
-        const students = scores.map(score => score.studentId)
-        callback(students)
-    })
+    es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', callback)
 }
 
 exports.find = (studentId, callback) => {
