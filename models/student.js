@@ -6,3 +6,11 @@ exports.all = (callback) => {
         callback(students)
     })
 }
+
+exports.find = (studentId, callback) => {
+    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
+        const student = scores.filter(score => score.studentId === studentId)
+        callback(student)
+    })
+
+}

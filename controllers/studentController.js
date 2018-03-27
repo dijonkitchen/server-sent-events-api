@@ -5,3 +5,9 @@ exports.index = (req, res) => {
         res.json(students)
     })
 }
+
+exports.show = (req, res) => {
+    Student.find(req.params.id, student=> {
+        res.json(student)
+    })
+}
