@@ -19,7 +19,9 @@ const fetch = (url, eventName, callback) => {
     logConnectionStatus(eventSource)
   }
 
-  eventSource.addEventListener(eventName, callback)
+  eventSource.addEventListener(eventName, event => {
+    callback(JSON.parse(event.data))
+  })
 
   eventSource.onerror = () => {
     logConnectionStatus(eventSource)
@@ -35,8 +37,14 @@ const setHeaders = (res) => {
     });
 }
 
+const write = (res, data) => {
+  const json = JSON.stringify(data)
+  res.write("data: " + json + '\n\n');
+}
+
 module.exports = {
   logConnectionStatus,
   fetch,
-  setHeaders
+  setHeaders,
+  write
 }
