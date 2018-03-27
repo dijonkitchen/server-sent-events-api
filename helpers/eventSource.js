@@ -19,7 +19,9 @@ const fetch = (url, eventName, callback) => {
     logConnectionStatus(eventSource)
   }
 
-  eventSource.addEventListener(eventName, callback)
+  eventSource.addEventListener(eventName, event => {
+    callback(JSON.parse(event.data))
+  })
 
   eventSource.onerror = () => {
     logConnectionStatus(eventSource)
