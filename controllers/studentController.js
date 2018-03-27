@@ -5,8 +5,7 @@ exports.index = (req, res) => {
     es.setHeaders(res)
 
     Student.all(student => {
-        const json = JSON.stringify(student.studentId)
-        res.write("data: " + json + '\n\n');
+        es.write(res, student.studentId)
     })
 }
 
@@ -14,7 +13,6 @@ exports.show = (req, res) => {
     es.setHeaders(res)
 
     Student.find(req.params.id, student => {
-        const json = JSON.stringify(student)
-        res.write("data: " + json + '\n\n');
+        es.write(res, student)
     })
 }
