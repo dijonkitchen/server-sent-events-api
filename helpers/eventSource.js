@@ -1,6 +1,5 @@
 const EventSource = require('eventsource')
 
-const BATCH_SIZE = 20
 const CONNECTION_STATUS = {
   0: 'Connecting',
   1: 'Open',
