@@ -5,7 +5,8 @@ exports.index = (req, res) => {
     es.setHeaders(res)
 
     Student.all(student => {
-        res.write("data: " + student.studentId + '\n\n');
+        const json = JSON.stringify(student.studentId)
+        res.write("data: " + json + '\n\n');
     })
 }
 
