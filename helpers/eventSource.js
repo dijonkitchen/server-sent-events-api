@@ -27,7 +27,16 @@ const fetch = (url, eventName, callback) => {
   }
 }
 
+const setHeaders = (res) => {
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive'
+    });
+}
+
 module.exports = {
   logConnectionStatus,
-  fetch
+  fetch,
+  setHeaders
 }

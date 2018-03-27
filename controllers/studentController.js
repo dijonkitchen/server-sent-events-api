@@ -1,11 +1,8 @@
 const Student = require('../models/student')
+const es = require('../helpers/eventSource')
 
 exports.index = (req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive'
-    });
+    es.setHeaders(res)
 
     Student.all(student => {
         res.write("data: " + student.studentId + '\n\n');
