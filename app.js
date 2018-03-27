@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var scores = require('./routes/scores');
 var students = require('./routes/students');
 var exams = require('./routes/exams');
 
@@ -25,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/scores', scores);
 app.use('/students', students);
 app.use('/exams', exams);
 

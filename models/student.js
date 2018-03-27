@@ -1,16 +1,29 @@
-const Score = require('./score')
+const es = require('../helpers/eventSource')
 
 exports.all = (callback) => {
-    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
-        const students = scores.map(score => score.studentId)
-        callback(students)
+    const students = new Set()
+
+    es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', event => {
+        const student = JSON.parse(event.data)
+        if (!students.has(student.studentId)) {
+            students.add(student.studentId)
+            callback(student)
+        }
     })
 }
 
 exports.find = (studentId, callback) => {
-    Score.fetch('http://live-test-scores.herokuapp.com/scores', 2, scores => {
-        const student = scores.filter(score => score.studentId === studentId)
-        callback(student)
+    const scores = new Set()
+
+    es.fetch('http://live-test-scores.herokuapp.com/scores', 'score', event => {
+        const score = JSON.parse(event.data)
+        if (score.studentId === studentId) {
+            scores.add(score)
+            const totalScore = Array.from(scores).reduce( (acc, score) => acc + score.score, 0)
+            const average = totalScore / scores.size
+
+            callback({ score, average })
+        }
     })
 
 }
