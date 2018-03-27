@@ -7,8 +7,7 @@ exports.index = (req, res) => {
         'Connection': 'keep-alive'
     });
 
-    Student.all(event => {
-        const student = JSON.parse(event.data)
+    Student.all(student => {
         res.write("data: " + student.studentId + '\n\n');
     })
 }
