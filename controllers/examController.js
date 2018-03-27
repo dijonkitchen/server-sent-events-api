@@ -11,8 +11,11 @@ exports.index = (req, res) => {
 }
 
 exports.show = (req, res) => {
+    es.setHeaders(res)
+
     const id = JSON.parse(req.params.id)
     Exam.find(id, exam => {
-        res.json(exam)
+        const json = JSON.stringify(exam)
+        res.write("data: " + json + '\n\n');
     })
 }
