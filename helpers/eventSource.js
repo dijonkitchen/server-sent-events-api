@@ -7,7 +7,7 @@ const CONNECTION_STATUS = {
 }
 
 const logConnectionStatus = (eventSource) => {
-  console.log('Connection: ', CONNECTION_STATUS[eventSource.readyState], eventSource.url)
+  return `Connection: ${CONNECTION_STATUS[eventSource.readyState]} ${eventSource.url}`
 }
 
 const fetch = (url, eventName, callback) => {
