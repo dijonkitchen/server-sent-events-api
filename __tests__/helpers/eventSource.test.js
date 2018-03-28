@@ -5,25 +5,25 @@ describe('EventSource helper', () => {
         expect(es).toBeTruthy()
     })
 
-    describe('logConnectionStatus', () => {
-        test('logs connecting status', () => {
-            const subject = es.logConnectionStatus({
+    describe('connectionStatus', () => {
+        test('connecting', () => {
+            const subject = es.connectionStatus({
                 readyState: 0,
                 url: 'testUrl'
             })
             expect(subject).toBe('Connection: Connecting testUrl')
         })
 
-        test('logs open status', () => {
-            const subject = es.logConnectionStatus({
+        test('open', () => {
+            const subject = es.connectionStatus({
                 readyState: 1,
                 url: 'testUrl'
             })
             expect(subject).toBe('Connection: Open testUrl')
         })
 
-        test('logs closed status', () => {
-            const subject = es.logConnectionStatus({
+        test('closed', () => {
+            const subject = es.connectionStatus({
                 readyState: 2,
                 url: 'testUrl'
             })

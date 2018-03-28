@@ -6,17 +6,17 @@ const CONNECTION_STATUS = {
   2: 'Closed'
 }
 
-const logConnectionStatus = (eventSource) => {
+const connectionStatus = (eventSource) => {
   return `Connection: ${CONNECTION_STATUS[eventSource.readyState]} ${eventSource.url}`
 }
 
 const fetch = (url, eventName, callback) => {
   const eventSource = new EventSource(url)
 
-  logConnectionStatus(eventSource)
+  console.log(connectionStatus(eventSource))
 
   eventSource.onopen = () => {
-    logConnectionStatus(eventSource)
+    console.log(connectionStatus(eventSource))
   }
 
   eventSource.addEventListener(eventName, event => {
@@ -24,7 +24,7 @@ const fetch = (url, eventName, callback) => {
   })
 
   eventSource.onerror = () => {
-    logConnectionStatus(eventSource)
+    console.log(connectionStatus(eventSource))
     console.log('EventSource failed.')
   }
 }
@@ -43,7 +43,7 @@ const write = (res, data) => {
 }
 
 module.exports = {
-  logConnectionStatus,
+  connectionStatus,
   fetch,
   setHeaders,
   write
