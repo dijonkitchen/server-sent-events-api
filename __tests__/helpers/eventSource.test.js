@@ -41,7 +41,6 @@ describe('EventSource helper', () => {
             es.handleEvent(event, student => {
                 expect(student.studentId).toEqual('asdf')
             })
-
         })
     })
 })

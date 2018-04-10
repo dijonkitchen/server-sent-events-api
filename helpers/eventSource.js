@@ -20,13 +20,17 @@ const fetch = (url, eventName, callback) => {
   }
 
   eventSource.addEventListener(eventName, event => {
-    callback(JSON.parse(event.data))
+    handleEvent(event, callback)
   })
 
   eventSource.onerror = () => {
     console.log(connectionStatus(eventSource))
     console.log('EventSource failed.')
   }
+}
+
+const handleEvent = (event, callback) => {
+  callback(JSON.parse(event.data))
 }
 
 const setHeaders = (res) => {
@@ -45,6 +49,7 @@ const write = (res, data) => {
 module.exports = {
   connectionStatus,
   fetch,
+  handleEvent,
   setHeaders,
   write
 }
