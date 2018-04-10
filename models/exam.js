@@ -21,7 +21,10 @@ const all = (callback) => {
 const handleExamScores = (examId, score, scores, callback) => {
   if (score.exam === examId) {
     scores.add(score)
-    const average = Array.from(scores).reduce((acc, score) => acc + score.score, 0) / scores.size
+    const totalScore =
+      Array.from(scores)
+        .reduce((acc, scoreData) => acc + scoreData.score, 0)
+    const average = totalScore / scores.size
 
     callback({ score, average })
   }
