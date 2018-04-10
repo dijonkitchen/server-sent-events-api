@@ -10,3 +10,4 @@ jobs:
       - run:
           name: test
           command: yarn test
+      - run: <(curl -s https://codecov.io/bash)
