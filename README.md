@@ -58,3 +58,15 @@ yarn start
 ```
 
 Then, open http://localhost:3000/ or other endpoints.
+
+### Testing
+
+For watching code changes and re-running tests in development:
+```sh
+yarn devtest
+```
+
+Or for continuous integration, including linting and test coverage:
+```sh
+yarn test
+```
