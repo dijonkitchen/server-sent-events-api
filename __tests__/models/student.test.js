@@ -48,4 +48,19 @@ describe('Student', () => {
     test('has find method', () => {
         expect(Student.find).toBeTruthy()
     })
+    test('handles score', () => {
+        const callback = jest.fn()
+        const scoreData = [
+            { studentId: 'qwerty' },
+            { studentId: 'jonathan' },
+            { studentId: 'qwerty' },
+        ]
+        const scores = new Set()
+
+        for (const score of scoreData) {
+            Student.handleScore('qwerty', score, scores, callback)
+        }
+
+        expect(callback).toHaveBeenCalledTimes(2)
+    })
 })
