@@ -81,4 +81,37 @@ describe('Student', () => {
 
         expect(callback).toHaveBeenCalledTimes(2)
     })
+    test('handles score data', () => {
+        const subject = []
+        const callback = (score) => {
+            subject.push(score)
+        }
+        const scoreData = [
+            { studentId: 'qwerty', score: 80 },
+            { studentId: 'jonathan', score: 39 },
+            { studentId: 'qwerty', score: 100 },
+        ]
+        const scores = new Set()
+
+        for (const score of scoreData) {
+            Student.handleScore('qwerty', score, scores, callback)
+        }
+
+        expect(subject).toEqual([
+            {
+                score: {
+                    studentId: 'qwerty',
+                    score: 80
+                },
+                average: 80
+            },
+            {
+                score: {
+                    studentId: 'qwerty',
+                    score: 100
+                },
+                average: 90
+            }
+        ])
+    })
 })
