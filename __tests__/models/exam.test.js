@@ -29,4 +29,19 @@ describe('Exam', () => {
     test('handles scores for an exam', () => {
         expect(Exam.handleExamScores).toBeTruthy()
     })
+    test('handles unique scores for an exam', () => {
+        const callback = jest.fn()
+        const scoreData = [
+            { exam: 123, score: 50 },
+            { exam: 43, score: 60 },
+            { exam: 123, score: 70 }
+        ]
+        const exams = new Set()
+
+        for (const score of scoreData) {
+            Exam.handleExamScores(123, score, exams, callback)
+        }
+
+        expect(callback).toHaveBeenCalledTimes(2)
+    })
 })
