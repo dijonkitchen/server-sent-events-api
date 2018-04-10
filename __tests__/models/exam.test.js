@@ -23,7 +23,10 @@ describe('Exam', () => {
 
         expect(subject).toEqual([123, 43])
     })
-    test('can find scores for a exam', () => {
+    test('can find scores for an exam', () => {
         expect(Exam.find).toBeTruthy()
+    })
+    test('handles scores for an exam', () => {
+        expect(Exam.handleExamScores).toBeTruthy()
     })
 })
