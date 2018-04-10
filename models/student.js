@@ -7,11 +7,15 @@ const all = (callback) => {
     const students = new Set()
 
     es.fetch(ENDPOINT, EVENT, student => {
-        if (!students.has(student.studentId)) {
-            students.add(student.studentId)
-            callback(student)
-        }
+        handleStudent(student, students, callback)
     })
+}
+
+const handleStudent = (student, students, callback) => {
+    if (!students.has(student.studentId)) {
+        students.add(student.studentId)
+        callback(student)
+    }
 }
 
 const find = (studentId, callback) => {
@@ -30,5 +34,6 @@ const find = (studentId, callback) => {
 
 module.exports = {
     all,
+    handleStudent,
     find
 }
