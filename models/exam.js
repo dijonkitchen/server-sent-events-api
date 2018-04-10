@@ -22,11 +22,11 @@ const find = (examId, callback) => {
     const scores = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
-        handleExamScores(score, scores, callback)
+        handleExamScores(examId, score, scores, callback)
     })
 }
 
-const handleExamScores = (score, scores, callback) => {
+const handleExamScores = (examId, score, scores, callback) => {
     if (score.exam === examId) {
         scores.add(score)
         const average = Array.from(scores).reduce( (acc, score) => acc + score.score, 0) / scores.size
