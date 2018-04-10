@@ -3,7 +3,7 @@ const es = require('../helpers/eventSource')
 const ENDPOINT = 'http://live-test-scores.herokuapp.com/scores'
 const EVENT = 'score'
 
-exports.all = (callback) => {
+const all = (callback) => {
     const exams = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
@@ -14,7 +14,7 @@ exports.all = (callback) => {
     })
 }
 
-exports.find = (examId, callback) => {
+const find = (examId, callback) => {
     const scores = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
@@ -26,4 +26,9 @@ exports.find = (examId, callback) => {
         }
     })
 
+}
+
+module.exports = {
+    all,
+    find
 }
