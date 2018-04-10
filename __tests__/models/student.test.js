@@ -39,9 +39,9 @@ describe('Student', () => {
     ]
     const students = new Set()
 
-    for (const student of studentData) {
+    studentData.forEach((student) => {
       Student.handleStudent(student, students, callback)
-    }
+    })
 
     expect(callback).toHaveBeenCalledTimes(2)
   })
@@ -57,9 +57,9 @@ describe('Student', () => {
     ]
     const students = new Set()
 
-    for (const student of studentData) {
+    studentData.forEach((student) => {
       Student.handleStudent(student, students, callback)
-    }
+    })
 
     expect(subject).toEqual(['qwerty', 'jonathan'])
   })
@@ -75,9 +75,9 @@ describe('Student', () => {
     ]
     const scores = new Set()
 
-    for (const score of scoreData) {
+    scoreData.forEach((score) => {
       Student.handleScore('qwerty', score, scores, callback)
-    }
+    })
 
     expect(callback).toHaveBeenCalledTimes(2)
   })
@@ -93,9 +93,9 @@ describe('Student', () => {
     ]
     const scores = new Set()
 
-    for (const score of scoreData) {
+    scoreData.forEach((score) => {
       Student.handleScore('qwerty', score, scores, callback)
-    }
+    })
 
     expect(subject).toEqual([
       {

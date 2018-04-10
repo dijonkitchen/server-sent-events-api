@@ -17,9 +17,9 @@ describe('Exam', () => {
     ]
     const exams = new Set()
 
-    for (const score of scoreData) {
+    scoreData.forEach((score) => {
       Exam.handleExams(score, exams, callback)
-    }
+    })
 
     expect(subject).toEqual([123, 43])
   })
@@ -38,9 +38,9 @@ describe('Exam', () => {
     ]
     const exams = new Set()
 
-    for (const score of scoreData) {
+    scoreData.forEach((score) => {
       Exam.handleExamScores(123, score, exams, callback)
-    }
+    })
 
     expect(callback).toHaveBeenCalledTimes(2)
   })
@@ -54,9 +54,9 @@ describe('Exam', () => {
     ]
     const exams = new Set()
 
-    for (const score of scoreData) {
+    scoreData.forEach((score) => {
       Exam.handleExamScores(123, score, exams, callback)
-    }
+    })
 
     expect(subject).toEqual([
       {
