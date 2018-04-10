@@ -22,18 +22,23 @@ const find = (studentId, callback) => {
     const scores = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
-        if (score.studentId === studentId) {
-            scores.add(score)
-            const totalScore = Array.from(scores).reduce( (acc, score) => acc + score.score, 0)
-            const average = totalScore / scores.size
-
-            callback({ score, average })
-        }
+        handleScore(studentId, score, scores, callback)
     })
+}
+
+const handleScore = (studentId, score, scores, callback) => {
+    if (score.studentId === studentId) {
+        scores.add(score)
+        const totalScore = Array.from(scores).reduce( (acc, score) => acc + score.score, 0)
+        const average = totalScore / scores.size
+
+        callback({ score, average })
+    }
 }
 
 module.exports = {
     all,
     handleStudent,
-    find
+    find,
+    handleScore
 }
