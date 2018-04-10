@@ -45,6 +45,24 @@ describe('Student', () => {
 
         expect(callback).toHaveBeenCalledTimes(2)
     })
+    test('handles unique student data', () => {
+        const subject = []
+        const callback = student => {
+            subject.push(student.studentId)
+        }
+        const studentData = [
+            { studentId: 'qwerty' },
+            { studentId: 'jonathan' },
+            { studentId: 'qwerty' },
+        ]
+        const students = new Set()
+
+        for (const student of studentData) {
+            Student.handleStudent(student, students, callback)
+        }
+
+        expect(subject).toEqual(['qwerty', 'jonathan'])
+    })
     test('has find method', () => {
         expect(Student.find).toBeTruthy()
     })
