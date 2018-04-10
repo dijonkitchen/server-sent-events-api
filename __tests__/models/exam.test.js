@@ -44,4 +44,35 @@ describe('Exam', () => {
 
         expect(callback).toHaveBeenCalledTimes(2)
     })
+    test('handles unique score data for an exam', () => {
+        const subject = []
+        const callback = score => subject.push(score)
+        const scoreData = [
+            { exam: 123, score: 50 },
+            { exam: 43, score: 60 },
+            { exam: 123, score: 70 }
+        ]
+        const exams = new Set()
+
+        for (const score of scoreData) {
+            Exam.handleExamScores(123, score, exams, callback)
+        }
+
+        expect(subject).toEqual([
+            {
+                score: {
+                    exam: 123,
+                    score: 50
+                },
+                average: 50
+            },
+            {
+                score: {
+                    exam: 123,
+                    score: 70
+                },
+                average: 60
+            },
+        ])
+    })
 })
