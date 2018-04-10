@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
   },
   "dependencies": {
     "body-parser": "~1.18.2",
