@@ -3,14 +3,6 @@ const es = require('../helpers/eventSource')
 const ENDPOINT = 'http://live-test-scores.herokuapp.com/scores'
 const EVENT = 'score'
 
-const all = (callback) => {
-  const exams = new Set()
-
-  es.fetch(ENDPOINT, EVENT, (score) => {
-    handleScore(score, exams, callback)
-  })
-}
-
 const handleExams = (score, exams, callback) => {
   if (!exams.has(score.exam)) {
     exams.add(score.exam)
@@ -18,11 +10,11 @@ const handleExams = (score, exams, callback) => {
   }
 }
 
-const find = (examId, callback) => {
-  const scores = new Set()
+const all = (callback) => {
+  const exams = new Set()
 
   es.fetch(ENDPOINT, EVENT, (score) => {
-    handleExamScores(examId, score, scores, callback)
+    handleScore(score, exams, callback)
   })
 }
 
@@ -33,6 +25,14 @@ const handleExamScores = (examId, score, scores, callback) => {
 
     callback({ score, average })
   }
+}
+
+const find = (examId, callback) => {
+  const scores = new Set()
+
+  es.fetch(ENDPOINT, EVENT, (score) => {
+    handleExamScores(examId, score, scores, callback)
+  })
 }
 
 module.exports = {

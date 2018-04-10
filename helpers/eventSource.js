@@ -8,6 +8,10 @@ const CONNECTION_STATUS = {
 
 const connectionStatus = eventSource => `Connection: ${CONNECTION_STATUS[eventSource.readyState]} ${eventSource.url}`
 
+const handleEvent = (event, callback) => {
+  callback(JSON.parse(event.data))
+}
+
 const fetch = (url, eventName, callback) => {
   const eventSource = new EventSource(url)
 
@@ -25,10 +29,6 @@ const fetch = (url, eventName, callback) => {
     console.log(connectionStatus(eventSource))
     console.log('EventSource failed.')
   }
-}
-
-const handleEvent = (event, callback) => {
-  callback(JSON.parse(event.data))
 }
 
 const setHeaders = (res) => {
