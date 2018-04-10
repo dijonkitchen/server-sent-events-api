@@ -14,7 +14,7 @@ const all = (callback) => {
   const exams = new Set()
 
   es.fetch(ENDPOINT, EVENT, (score) => {
-    handleScore(score, exams, callback)
+    handleExams(score, exams, callback)
   })
 }
 
