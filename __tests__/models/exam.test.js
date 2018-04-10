@@ -7,15 +7,20 @@ describe('Exam', () => {
     test('handles exams', () => {
         expect(Exam.handleScore).toBeTruthy()
     })
-    test('handles exams', () => {
-        const callback = jest.fn()
-        const score = {
-            exam: 123
-        }
+    test('handles unique exam data', () => {
+        const subject = []
+        const callback = exam => subject.push(exam)
+        const scoreData = [
+            { exam: 123 },
+            { exam: 43 },
+            { exam: 123 }
+        ]
         const exams = new Set()
 
-        Exam.handleScore(score, exams, callback)
+        for (const score of scoreData) {
+            Exam.handleScore(score, exams, callback)
+        }
 
-        expect(callback).toHaveBeenCalledTimes(1)
+        expect(subject).toEqual([123, 43])
     })
 })
