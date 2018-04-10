@@ -6,8 +6,10 @@ const CONNECTION_STATUS = {
   2: 'Closed'
 }
 
-const connectionStatus = (eventSource) => {
-  return `Connection: ${CONNECTION_STATUS[eventSource.readyState]} ${eventSource.url}`
+const connectionStatus = eventSource => `Connection: ${CONNECTION_STATUS[eventSource.readyState]} ${eventSource.url}`
+
+const handleEvent = (event, callback) => {
+  callback(JSON.parse(event.data))
 }
 
 const fetch = (url, eventName, callback) => {
@@ -19,7 +21,7 @@ const fetch = (url, eventName, callback) => {
     console.log(connectionStatus(eventSource))
   }
 
-  eventSource.addEventListener(eventName, event => {
+  eventSource.addEventListener(eventName, (event) => {
     handleEvent(event, callback)
   })
 
@@ -29,21 +31,17 @@ const fetch = (url, eventName, callback) => {
   }
 }
 
-const handleEvent = (event, callback) => {
-  callback(JSON.parse(event.data))
-}
-
 const setHeaders = (res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive'
-    });
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    Connection: 'keep-alive'
+  })
 }
 
 const write = (res, data) => {
   const json = JSON.stringify(data)
-  res.write("data: " + json + '\n\n');
+  res.write(`data: ${json}\n\n`)
 }
 
 module.exports = {
