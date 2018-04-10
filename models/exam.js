@@ -7,11 +7,15 @@ const all = (callback) => {
     const exams = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
-        if (!exams.has(score.exam)) {
-            exams.add(score.exam)
-            callback(score.exam)
-        }
+        handleScore(score, callback)
     })
+}
+
+const handleScore = (score, callback) => {
+    if (!exams.has(score.exam)) {
+        exams.add(score.exam)
+        callback(score.exam)
+    }
 }
 
 const find = (examId, callback) => {
@@ -30,5 +34,6 @@ const find = (examId, callback) => {
 
 module.exports = {
     all,
+    handleScore,
     find
 }
