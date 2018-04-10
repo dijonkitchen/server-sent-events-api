@@ -16,7 +16,7 @@ The application consumes this data, processes it, and provides a simple REST API
 
 ## REST API documentation:
 
-`GET`:
+`GET /api/v1`:
    * `/students` lists all users that have received at least one test score
    * `/students/{id}` lists the test results for the specified student, and provides the student's average score across all exams
    * `/exams` lists all the exams that have been recorded
