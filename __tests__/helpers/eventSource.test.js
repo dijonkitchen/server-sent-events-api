@@ -30,4 +30,18 @@ describe('EventSource helper', () => {
             expect(subject).toBe('Connection: Closed testUrl')
         })
     })
+
+    describe('handleEvent', () => {
+        test('calls callback when event is emitted', () => {
+            const data = JSON.stringify({
+                studentId: 'asdf'
+            })
+            const event = { data }
+
+            es.handleEvent(event, student => {
+                expect(student.studentId).toEqual('asdf')
+            })
+
+        })
+    })
 })
