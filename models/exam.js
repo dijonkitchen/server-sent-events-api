@@ -11,7 +11,7 @@ const all = (callback) => {
     })
 }
 
-const handleScore = (score, exams, callback) => {
+const handleExams = (score, exams, callback) => {
     if (!exams.has(score.exam)) {
         exams.add(score.exam)
         callback(score.exam)
@@ -37,7 +37,7 @@ const handleExamScores = (score, scores, callback) => {
 
 module.exports = {
     all,
-    handleScore,
+    handleExams,
     find,
     handleExamScores
 }

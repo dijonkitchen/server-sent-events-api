@@ -5,7 +5,7 @@ describe('Exam', () => {
         expect(Exam.all).toBeTruthy()
     })
     test('handles exams', () => {
-        expect(Exam.handleScore).toBeTruthy()
+        expect(Exam.handleExams).toBeTruthy()
     })
     test('handles unique exam data', () => {
         const subject = []
@@ -18,7 +18,7 @@ describe('Exam', () => {
         const exams = new Set()
 
         for (const score of scoreData) {
-            Exam.handleScore(score, exams, callback)
+            Exam.handleExams(score, exams, callback)
         }
 
         expect(subject).toEqual([123, 43])
