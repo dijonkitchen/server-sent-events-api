@@ -23,4 +23,7 @@ describe('Exam', () => {
 
         expect(subject).toEqual([123, 43])
     })
+    test('can find scores for a exam', () => {
+        expect(Exam.find).toBeTruthy()
+    })
 })
