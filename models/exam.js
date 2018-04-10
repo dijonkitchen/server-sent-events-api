@@ -7,11 +7,11 @@ const all = (callback) => {
     const exams = new Set()
 
     es.fetch(ENDPOINT, EVENT, score => {
-        handleScore(score, callback)
+        handleScore(score, exams, callback)
     })
 }
 
-const handleScore = (score, callback) => {
+const handleScore = (score, exams, callback) => {
     if (!exams.has(score.exam)) {
         exams.add(score.exam)
         callback(score.exam)
